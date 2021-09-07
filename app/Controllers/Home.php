@@ -8,7 +8,7 @@ class Home extends BaseController
 	{
 		$data = [
 			'title' => 'Tide Gauge Downloader',
-			'css' => '/css/home.css',
+			'css' => 'css/home.css',
 		];
 		return view('home', $data);
 	}
