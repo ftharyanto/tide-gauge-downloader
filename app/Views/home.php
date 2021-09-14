@@ -30,19 +30,25 @@
                             <label for="net_id">Network ID</label>
                         </div>
                         <div class="col-12 col-sm-9">
-                            <input type="text" class="form-control" id="net_id" name="netid">
+                            <select class="form-control selectpicker" data-live-search="true" id="net_id" name="netid">
+                                <option value="">Select Network ID</option>
+                            </select>
                         </div>
                         <div class="col-12 col-sm-3 text-right-sm">
                             <label for="station_id">Station ID</label>
                         </div>
                         <div class="col-12 col-sm-9">
-                            <input type="text" class="form-control" id="station_id" name="staid">
+                            <select class="form-control selectpicker" data-live-search="true" id="station_id" name="staid">
+                                <option value="">Select Station ID</option>
+                            </select>
                         </div>
                         <div class="col-12 col-sm-3 text-right-sm">
                             <label for="sensor_id">Sensor ID</label>
                         </div>
                         <div class="col-12 col-sm-9">
-                            <input type="text" class="form-control" id="sensor_id" name="sensorid">
+                            <select class="form-control selectpicker" data-live-search="true" id="sensor_id" name="sensorid">
+                                <option value="">Select Sensor ID</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -53,6 +59,7 @@
             <div class="container text-center download-link">
                 <a id=download-link></a>
             </div>
+            <p id="test"></p>
         </div>
     </div>
 </div>

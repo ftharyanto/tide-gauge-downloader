@@ -15,3 +15,16 @@ function generateDownloadLink() {
     document.getElementById('download-button').href = csvLink;
     document.getElementById('download-link').click();
   }
+
+
+var net_id_list = ['T1', 'T2', 'TS', 'WL', 'ID', 'BY', 'CT'];
+
+// populate net_id select option with net_id_list using jquery
+$(document).ready(function() {
+    $.each(net_id_list, function(index, value) {
+        $('#net_id').append($('<option>', {
+            value: value,
+            text: value
+        }));
+    });
+});
