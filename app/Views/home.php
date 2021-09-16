@@ -59,7 +59,6 @@
             <div class="container text-center download-link">
                 <a id=download-link></a>
             </div>
-            <p id="test"></p>
         </div>
     </div>
 </div>
