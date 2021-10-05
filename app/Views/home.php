@@ -43,10 +43,10 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm-3 text-right-sm">
-                            <label for="sensor_id">Sensor ID</label>
+                            <label for="sensor_type">Sensor ID</label>
                         </div>
                         <div class="col-12 col-sm-9">
-                            <select class="form-control select" data-live-search="true" id="sensor_id" name="sensorid">
+                            <select class="form-control select" data-live-search="true" id="sensor_type" name="sensortype">
                                 <option value="">Select Sensor ID</option>
                             </select>
                         </div>
@@ -54,7 +54,7 @@
                 </div>
             </form>
             <div class="text-center">
-                <button class="btn btn-success" onclick="downloadCsv();" id="download-button">CSV</button>
+                <button class="btn btn-success" onclick="downloadCsv();" id="download-button">Download CSV</button>
             </div>
             <div class="container text-center download-link">
                 <a id=download-link></a>

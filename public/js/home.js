@@ -3,9 +3,9 @@ function generateDownloadLink() {
   var endtm = document.myform.end_time.value.replace('T', '%20') + ':00';
   var netid = document.myform.netid.value;
   var staid = document.myform.staid.value;
-  var sensorid = document.myform.sensorid.value;
+  var sensortype = document.myform.sensortype.value;
 
-  var hasil = `http://172.19.0.163/tntapi/archive/fetchbydate?starttm=${starttm}&endtm=${endtm}&netid=${netid}&staid=${staid}&sensorid=${sensorid}`;
+  var hasil = `http://172.19.0.163/tntapi/archive/fetchbydate?starttm=${starttm}&endtm=${endtm}&netid=${netid}&staid=${staid}&sensortype=${sensortype}`;
   document.getElementById('download-link').href = hasil;
   document.getElementById('download-link').innerHTML = hasil;
 }
@@ -16,118 +16,79 @@ function downloadCsv() {
   document.getElementById('download-link').click();
 }
 
-// var net_id_list = ['T1', 'T2', 'TS', 'WL', 'ID', 'BY', 'CT'];
-// var sta_id_list = [];
-// var sensor_id_list = [];
+var net_id = document.getElementById('net_id');
+var station_id = document.getElementById('station_id');
+var sensor_type = document.getElementById('sensor_type');
 
-// parse data_sensor_status.json and print it to console using jquery
-// function netIdList() {
-//   $.getJSON('data_sensor_status.json', function (data) {
-//     var net_id_list = [];
-//     $.each(data, function (index, value) {
-//       net_id_list.push(value.net_id);
-//     });
-//     net_id_list = [...new Set(net_id_list)];
-//     return net_id_list;
-//     console.log(net_id_list);
-//   });
-// }
-// var net_id_list = netIdList();
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'data_sensor_status.json', true);
+xhr.onload = function () {
+  var data = JSON.parse(this.response);
+  var net_id_list = [];
+  for (var i = 0; i < data.length; i++) {
+    net_id_list.push(data[i].net_id);
+  }
+  net_id_list = [...new Set(net_id_list)];
 
-// populate net_id select option with net_id_list using jquery
-// $(document).ready(function () {
-//   $.each(net_id_list, function (index, value) {
-//     $('#net_id').append(
-//       $('<option>', {
-//         value: value,
-//         text: value,
-//       })
-//     );
-//   });
-// });
+  for (var i = 0; i < net_id_list.length; i++) {
+    net_id.append(new Option(net_id_list[i], net_id_list[i]));
+  }
+  console.log(net_id_list);
+};
+xhr.send();
 
-// $(document).ready(function () {
-//   $('#net_id').append(`<option>abc</option>`);
-//   // populate net_id with array of [1,2,3,4,5,6,7]
-//   var net_id_list = [];
-//   $.getJSON('data_sensor_status.json', function (data) {
-//     $.each(data, function (index, value) {
-//       net_id_list.push(value.net_id);
-//     });
-//     net_id_list = [...new Set(net_id_list)];
-//     console.log(net_id_list);
-//   });
-// });
-// $.each(net_id_list, function (index, value) {
-// $('#net_id').append(`<option>1</option>`);
-// });
+// filter station_id based on net_id
+net_id.addEventListener('change', function () {
+  var selected_option = this.value;
+  console.log(selected_option);
+  station_id_list = [];
 
-// var net_id_list = ['T1', 'T2', 'TS', 'WL', 'ID', 'BY', 'CT'];
-
-// $.each(net_id_list, function (index, value) {
-//   $('#net_id').append(new Option(value, value));
-// });
-
-// $.getJSON('data_sensor_status.json', function (data) {
-//   net_id_list = [];
-//   $.each(data, function (index, value) {
-//     net_id_list.push(value.net_id);
-//   });
-//   net_id_list = [...new Set(net_id_list)];
-//   $('#net_id').append(new Option(value, value));
-
-//   console.log(net_id_list);
-// });
-
-// async function fetchStations() {
-//   const response = await fetch('data_sensor_status.json');
-//   const stations = await response.json();
-//   console.log(stations.length);
-//   return stations;
-// }
-
-// fetchStations();
-
-// get json file and print it to console using vanilla js
-// var xhr = new XMLHttpRequest();
-// xhr.open('GET', 'data_sensor_status.json', true);
-// xhr.onload = function () {
-//   var data = JSON.parse(this.response);
-//   var net_id_list = [];
-//   for (var i = 0; i < data.length; i++) {
-//     net_id_list.push(data[i].net_id);
-//   }
-//   net_id_list = [...new Set(net_id_list)];
-
-//   for (var i = 0; i < net_id_list.length; i++) {
-//     document.getElementById('net_id').innerHTML += net_id_list[i];
-//   }
-//   console.log(net_id_list);
-// };
-// xhr.send();
-
-function dl_data() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'data_sensor_status.json', true);
+
   xhr.onload = function () {
     var data = JSON.parse(this.response);
-    var net_id_list = [];
-    for (var i = 0; i < data.length; i++) {
-      net_id_list.push(data[i].net_id);
+    data.forEach(function (item) {
+      if (item.net_id === selected_option) {
+        station_id_list.push(item.station_id);
+      }
+    });
+    station_id_list = [...new Set(station_id_list)];
+    console.log(station_id_list);
+    while (station_id.options.length > 0) {
+      station_id.options.remove(0);
     }
-    net_id_list = [...new Set(net_id_list)];
-
-    for (var i = 0; i < net_id_list.length; i++) {
-      document.getElementById('net_id').append(new Option(net_id_list[i], net_id_list[i]));
+    for (var i = 0; i < station_id_list.length; i++) {
+      station_id.append(new Option(station_id_list[i], station_id_list[i]));
     }
-    console.log(net_id_list);
   };
   xhr.send();
-}
-dl_data();
+});
 
-// var net_id_list = ['T1', 'T2', 'TS', 'WL', 'ID', 'BY', 'CT'];
+// filter station_id based on net_id
+station_id.addEventListener('change', function () {
+  var selected_option = this.value;
+  console.log(selected_option);
+  sensor_type_list = [];
 
-// for (var i = 0; i < net_id_list.length; i++) {
-//   document.getElementById('net_id').append(new Option(net_id_list[i], net_id_list[i]));
-// }
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'data_sensor_status.json', true);
+
+  xhr.onload = function () {
+    var data = JSON.parse(this.response);
+    data.forEach(function (item) {
+      if (item.station_id === selected_option) {
+        sensor_type_list.push(item.sensor_type);
+      }
+    });
+    sensor_type_list = [...new Set(sensor_type_list)];
+    console.log(sensor_type_list);
+    while (sensor_type.options.length > 0) {
+      sensor_type.options.remove(0);
+    }
+    for (var i = 0; i < sensor_type_list.length; i++) {
+      sensor_type.append(new Option(sensor_type_list[i], sensor_type_list[i]));
+    }
+  };
+  xhr.send();
+});
