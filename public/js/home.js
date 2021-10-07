@@ -5,15 +5,16 @@ function generateDownloadLink() {
   var staid = document.myform.staid.value;
   var sensortype = document.myform.sensortype.value;
 
-  var hasil = `http://172.19.0.163/tntapi/archive/fetchbydate?starttm=${starttm}&endtm=${endtm}&netid=${netid}&staid=${staid}&sensortype=${sensortype}`;
+  var hasil = `http://172.19.0.163/tntapi/archive/fetchbydate?starttm=${starttm}&endtm=${endtm}&netid=${netid}&staid=${staid}&sensorid=${sensortype}`;
   document.getElementById('download-link').href = hasil;
   document.getElementById('download-link').innerHTML = hasil;
 }
 
 function downloadCsv() {
   csvLink = document.getElementById('download-link').href + '&format=CSV';
+
   document.getElementById('download-button').href = csvLink;
-  document.getElementById('download-link').click();
+  document.getElementById('download-button').click;
 }
 
 var net_id = document.getElementById('net_id');
