@@ -54,9 +54,11 @@
                 </div>
             </form>
             <div class="text-center">
-                <button class="btn btn-success" onclick="downloadCsv();" id="download-button">Download CSV</button>
+                <a id="download-btn-link">
+                    <button class="btn btn-success" id="download-btn">Download CSV</button>
+                </a>
             </div>
-            <div class="container text-center download-link">
+            <div class="container text-center download-link mt-2">
                 <a id=download-link></a>
             </div>
         </div>

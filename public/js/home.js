@@ -8,13 +8,7 @@ function generateDownloadLink() {
   var hasil = `http://172.19.0.163/tntapi/archive/fetchbydate?starttm=${starttm}&endtm=${endtm}&netid=${netid}&staid=${staid}&sensorid=${sensortype}`;
   document.getElementById('download-link').href = hasil;
   document.getElementById('download-link').innerHTML = hasil;
-}
-
-function downloadCsv() {
-  csvLink = document.getElementById('download-link').href + '&format=CSV';
-
-  document.getElementById('download-button').href = csvLink;
-  document.getElementById('download-button').click;
+  document.getElementById('download-btn-link').href = hasil + '&format=csv';
 }
 
 var net_id = document.getElementById('net_id');
