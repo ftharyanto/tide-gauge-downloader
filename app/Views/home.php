@@ -30,25 +30,31 @@
                             <label for="net_id">Network ID</label>
                         </div>
                         <div class="col-12 col-sm-9">
-                            <input type="text" class="form-control" id="net_id" name="netid">
+                            <select class="form-control select" data-live-search="true" id="net_id" name="netid">
+                                <option selected>Select Network ID</option>
+                            </select>
                         </div>
                         <div class="col-12 col-sm-3 text-right-sm">
                             <label for="station_id">Station ID</label>
                         </div>
                         <div class="col-12 col-sm-9">
-                            <input type="text" class="form-control" id="station_id" name="staid">
+                            <select class="form-control select" data-live-search="true" id="station_id" name="staid">
+                                <option value="">Select Station ID</option>
+                            </select>
                         </div>
                         <div class="col-12 col-sm-3 text-right-sm">
-                            <label for="sensor_id">Sensor ID</label>
+                            <label for="sensor_type">Sensor ID</label>
                         </div>
                         <div class="col-12 col-sm-9">
-                            <input type="text" class="form-control" id="sensor_id" name="sensorid">
+                            <select class="form-control select" data-live-search="true" id="sensor_type" name="sensortype">
+                                <option value="">Select Sensor ID</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </form>
             <div class="text-center">
-                <button class="btn btn-success" onclick="downloadCsv();" id="download-button">CSV</button>
+                <button class="btn btn-success" onclick="downloadCsv();" id="download-button">Download CSV</button>
             </div>
             <div class="container text-center download-link">
                 <a id=download-link></a>
