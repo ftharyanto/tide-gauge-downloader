@@ -10,6 +10,7 @@ class Home extends BaseController
 			'title' => 'Tide Gauge Downloader',
 			'css' => 'css/home.css',
 			'js' => 'js/home.js',
+			'map' => 'js/map.js'
 		];
 		return view('home', $data);
 	}
