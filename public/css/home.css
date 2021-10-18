@@ -1,7 +1,5 @@
 .div-content {
   margin-top: 2rem;
-  padding-left: 20%;
-  padding-right: 20%;
 }
 
 .btn {
@@ -21,4 +19,10 @@ h1 {
 
 .link-download {
   margin-top: 20px;
+}
+
+#mapid {
+  height: 400px;
+  width: 600px;
+  margin-left: 2rem;
 }
